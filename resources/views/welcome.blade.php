@@ -66,11 +66,17 @@
 </head>
 
 <body>
+    @extends('layouts.app')
+    @section('content')
     <div class="flex-center position-ref full-height">
         <h1>
-            hello Wel Come
+            hello Wel Come {{ Auth::user()->name }}
+            <br>
+            <a href="/student">student</a>
+            </br>
         </h1>
     </div>
+    @endsection
 </body>
 
 </html>
