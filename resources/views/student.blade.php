@@ -13,12 +13,11 @@
 
     <div class="container mt-5">
         <h2 class="mb-4">Laravel Yajra Datatables Example</h2>
-        @if(Session::has('success'))
-        <div class="alert alert-success" role="alert">
-            {{Session::get('success')}}
+        <div class="mt-2 mb-2  float-right"><a type="button" href="{{url('/add-student')}}"
+                class="btn btn-outline-primary">Add Student</a>
         </div>
-        @endif
         {{Session::get('data')}}
+
         <table class="table table-bordered yajra-datatable">
             <thead>
                 <tr>
@@ -34,6 +33,11 @@
             <tbody>
             </tbody>
         </table>
+        <br>
+        @if(Session::has('success')) <div class="alert alert-success" role="alert">
+            {{Session::get('success')}}
+        </div>
+        @endif
     </div>
 
 </body>
@@ -77,7 +81,7 @@ $(function() {
                 data: 'action',
                 name: 'action',
                 orderable: true,
-                searchable: true
+                // searchable: true,
             },
         ]
     });

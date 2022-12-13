@@ -36,8 +36,10 @@ Route::get('/', 'HomeController@index')->name('home');
     Route::get('student', 'StudentController@index')->name('student');
     Route::get('students/list', 'StudentController@getStudents')->name('students.list');
     Route::get('edit-student/{id}', 'StudentController@editStudents');
+    Route::get('/add-student', 'StudentController@addStudents');
     Route::get('delete-student/{id}', 'StudentController@deleteStudents');
     Route::post('/update-student', 'StudentController@updateStudents');
+    Route::post('/create-student', 'StudentController@createStudents');
     
     
 // Route::get('/time', function () {

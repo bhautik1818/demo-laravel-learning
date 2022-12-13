@@ -39,9 +39,9 @@ class StudentObserver
      */
     public function deleted(student $student)
     {
-        $user = User::findOrFail($student->id)->first();
-        User::where('id','=',$user->id)->delete();
-        Mail::to($user->email)->send(new SendMail($user));
+        // $user = User::findOrFail($student->id)->first();
+        // User::where('id','=',$user->id)->delete();
+        // Mail::to($user->email)->send(new SendMail($user));
     }
 
     /**
