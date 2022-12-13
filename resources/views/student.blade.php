@@ -18,6 +18,7 @@
             {{Session::get('success')}}
         </div>
         @endif
+        {{Session::get('data')}}
         <table class="table table-bordered yajra-datatable">
             <thead>
                 <tr>

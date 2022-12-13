@@ -12,5 +12,15 @@ class Student extends Model
         'username',
         'phone',
         'dob',
-    ];    
+    ];
+
+
+//delete user after delete student.    
+//     protected static function boot()
+//     {
+//         parent::boot();
+//         static::deleted(function () {
+//             User::where('id', '=', 1)->first()->delete();
+//         });
+//     }
 }

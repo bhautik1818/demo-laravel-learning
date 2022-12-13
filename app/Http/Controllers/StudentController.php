@@ -1,7 +1,10 @@
 <?php
 namespace App\Http\Controllers;
+
+use App\Mail\SendMail;
 use Illuminate\Http\Request;
 use App\Student;
+use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\Facades\DataTables as FacadesDataTables;
 
 class StudentController extends Controller
@@ -33,7 +36,9 @@ class StudentController extends Controller
     }
     public function deleteStudents($id)
     {
-        Student::where('id','=',$id)->delete();
+        $data = Student::where('id','=',$id)->first();
+        Student::where('id','=',$id)->first()->delete();
+        Mail::to($data->email)->send(new SendMail($data));
         return redirect()->back()->with("success","data delete successfully");
     }
  

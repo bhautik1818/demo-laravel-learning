@@ -1,0 +1,1 @@
+ <h1> user {{$data->name}} deleted successfully. </h1>
