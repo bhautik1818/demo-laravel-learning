@@ -25,10 +25,19 @@
                     @csrf
                     <input type="hidden" name="id" value="{{$data->id}}">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name"
-                            value="{{$data->name}}">
-                        @error('name')
+                        <label for="exampleInputEmail1">FirstName</label>
+                        <input type="text" class="form-control" id="firstname" placeholder="Enter FirstName"
+                            name="firstname" value="{{$data->firstname}}">
+                        @error('firstname')
+                        <div class="alert alert-danger">{{$message}}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">LastName</label>
+                        <input type="text" class="form-control" id="lastname" placeholder="Enter LastName"
+                            name="lastname" value="{{$data->lastname}}">
+                        @error('lastname')
                         <div class="alert alert-danger">{{$message}}
                         </div>
                         @enderror

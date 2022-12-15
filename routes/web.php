@@ -16,6 +16,9 @@
 namespace Carbon;
 
 use App\Http\Controllers\StudentController;
+use App\Student;
+;
+use App\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,6 +45,18 @@ Route::get('/', 'HomeController@index')->name('home');
     Route::post('/create-student', 'StudentController@createStudents');
     
     
+Route::get('/accessor', function () {
+    $student= Student::first()->get();
+    // echo $student->first()->username;
+    echo $student->first()->fullname;
+
+    // $dt = new Carbon();
+    // echo "<br>";
+    // echo $dt;
+    // echo "<br>";
+    // echo "<br>";
+    // echo "<br>";
+});
 // Route::get('/time', function () {
 //     $dt = new Carbon();
 //     echo "<br>";

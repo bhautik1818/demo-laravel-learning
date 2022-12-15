@@ -20,10 +20,19 @@
                 <form method="POST" action="{{url('/create-student')}}">
                     @csrf
                     <div class="form-group">
-                        <label for="Name">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name"
-                            value="{{old('name')}}">
-                        @error('name')
+                        <label for="FirstName">FirstName</label>
+                        <input type="text" class="form-control" id="firstname" placeholder="Enter FirstName"
+                            name="firstname" value="{{old('firstname')}}">
+                        @error('firstname')
+                        <div class="alert alert-danger">{{$message}}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="LastName">Name</label>
+                        <input type="text" class="form-control" id="lastname" placeholder="Enter LastName"
+                            name="lastname" value="{{old('lastname')}}">
+                        @error('lastname')
                         <div class="alert alert-danger">{{$message}}
                         </div>
                         @enderror

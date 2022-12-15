@@ -53,20 +53,23 @@ class StudentController extends Controller
     {
         //    return "Hi";
         $request->validate([
-            'name' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
             'email' => 'required|email',
             'username' => 'required',
-            'phone' => 'required',
+            'phone' => 'required | digits_between:10,12 | numeric',
             'dob' => 'required',
         ]);
         $id = $request->id;
-        $name = $request->name;
+        $firstname = $request->firstname;
+        $lastname = $request->lastname;
         $email = $request->email;
         $username = $request->username;
         $phone = $request->phone;
         $dob = $request->dob;
         Student::where('id', '=', $id)->update([
-            'name' => $name,
+            'firstname' => $firstname,
+            'lastname' => $lastname,
             'email' => $email,
             'username' => $username,
             'phone' => $phone,
@@ -79,30 +82,37 @@ class StudentController extends Controller
     {
         //    return "Hi";
         $request->validate([
-            'name' => 'required |min:4|max:15',
+            'firstname' => 'required |min:4|max:15',
+            'lastname' => 'required |min:4|max:15',
             'email' => 'required|email',
             'username' => 'required',
-            'phone' => 'required',
+            'phone' => 'required | digits_between:10,12|numeric',
             'dob' => 'required',
         ]);
-        $name = $request->name;
+        $student = new Student();
+        $firstname = $request->firstname;
+        $lastname = $request->lastname;
         $email = $request->email;
         $username = $request->username;
         $phone = $request->phone;
         $dob = $request->dob;
+        $subscription = $student->subscriptiondays(365);
         // DB::table('students')->insert([
-        //     'name'=>$name,
+        //     'firstname'=>$firstname,
+        //     'lastname'=>$lastname,
         //     'email'=>$email,
         //     'username'=>$username,
         //     'phone'=>$phone,
         //     'dob'=>$dob,
         // ]);
-        $student = new Student();
-        $student->name = $name;
+
+        $student->firstname = $firstname;
+        $student->lastname = $lastname;
         $student->email = $email;
         $student->username = $username;
         $student->phone = $phone;
         $student->dob = $dob;
+        $student->subscription = $subscription;
         $student->save();
         return redirect('student')->with("success", "data added successfully");
     }

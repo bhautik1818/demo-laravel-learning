@@ -22,7 +22,8 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Name</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
                     <th>Email</th>
                     <th>Username</th>
                     <th>Phone</th>
@@ -58,8 +59,12 @@ $(function() {
                 name: 'DT_RowIndex'
             },
             {
-                data: 'name',
-                name: 'name'
+                data: 'firstname',
+                name: 'firstname'
+            },
+            {
+                data: 'lastname',
+                name: 'lastname'
             },
             {
                 data: 'email',
