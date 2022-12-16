@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendMail extends Mailable
+class SendOTP extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -19,7 +19,7 @@ class SendMail extends Mailable
      */
     public function __construct($data)
     {
-        $this->data=$data;
+        $this->data = $data;
         //
     }
 
@@ -31,6 +31,6 @@ class SendMail extends Mailable
     public function build()
     {
         // return $this->view('view.name');
-        return $this->from('logisticinfotechbhautik@gmail.com')->subject("User Removed")->view('email.delete_user_email')->with('data',$this->data);
+        return $this->from('logisticinfotechbhautik@gmail.com')->subject("OTP for DEMO LARAVEL LEARNING")->view('email.send_otp')->with('data', $this->data);
     }
 }

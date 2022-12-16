@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\student;
-use App\Mail\SendMail;
+use App\Mail\SendOTP;
 use App\User;
 use Illuminate\Support\Facades\Mail;
 
@@ -17,7 +17,11 @@ class StudentObserver
      */
     public function created(student $student)
     {
-        //
+        $student->otp=random_int(100000, 999999);
+        $student->save();
+        
+        Mail::to($student->email)->send(new SendOTP($student));
+        // return redirect('student')->with("success", "data added successfully");
     }
 
     /**

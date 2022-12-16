@@ -16,7 +16,7 @@ class StudentSeeder extends Seeder
         //
         $faker = Faker::create();
         // $gender = $faker->randomElement(['male', 'female']);
-    	// foreach (range(1,100) as $index) {
+        // foreach (range(1,100) as $index) {
         //     DB::table('students')->insert([
         //         'firstname' => $faker->name($gender),
         //         'lastname' => $faker->lastname,
@@ -30,11 +30,10 @@ class StudentSeeder extends Seeder
         DB::table('students')->insert([
             'firstname' => 'bhautik',
             'lastname' => 'savaliya',
-            'email' =>'bhautik171999@gmail.com',
+            'email' => 'bhautik171999@gmail.com',
             'username' => 'bhautik_patel',
             'phone' => 9595959595,
             'dob' => $faker->date($format = 'Y-m-d', $max = 'now'),
-            'subscription'=>'Null'
         ]);
     }
 }

@@ -1,0 +1,1 @@
+<h1> {{$data->otp}} is otp for DEMO LARAVEL LEARNING app verification.</h1>

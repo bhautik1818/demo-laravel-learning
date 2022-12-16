@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\SendMail;
+use App\Mail\RemoveUser;
 use Illuminate\Http\Request;
 use App\Student;
 use Illuminate\Support\Facades\DB;
@@ -36,11 +36,33 @@ class StudentController extends Controller
         $data = Student::where('id', '=', $id)->first();
         return view('edit-student', ['data' => $data]);
     }
+
+    public function verifyStudents()
+    {
+        return view('verify');
+    }
+
+    public function verifyEmail(Request $request)
+    {
+        $request->validate([
+            'otp' => 'required|min:6|max:6',
+        ]);
+        $id = $request->id;
+        $user = Student::where('id', '=', $id)->first();
+        if($user->otp = $request->otp){
+            $user->is_verified=1;
+            $user->otp=NULL;
+            $user->save();
+            return redirect('student')->with("success", "data added successfully");
+        }
+        return redirect('student')->with("success", "data added successfully but student not verified.");
+    }
+
     public function deleteStudents($id)
     {
         $data = Student::where('id', '=', $id)->first();
         Student::where('id', '=', $id)->first()->delete();
-        Mail::to($data->email)->send(new SendMail($data));
+        Mail::to($data->email)->send(new RemoveUser($data));
         return redirect()->back()->with("success", "data delete successfully");
     }
 
@@ -51,7 +73,6 @@ class StudentController extends Controller
 
     public function updateStudents(Request $request)
     {
-        //    return "Hi";
         $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
@@ -80,7 +101,6 @@ class StudentController extends Controller
 
     public function createStudents(Request $request)
     {
-        //    return "Hi";
         $request->validate([
             'firstname' => 'required |min:4|max:15',
             'lastname' => 'required |min:4|max:15',
@@ -114,6 +134,7 @@ class StudentController extends Controller
         $student->dob = $dob;
         $student->subscription = $subscription;
         $student->save();
-        return redirect('student')->with("success", "data added successfully");
+        // return redirect('student')->with("success", "data added successfully");
+        return redirect('verify')->with('data', $student);
     }
 }

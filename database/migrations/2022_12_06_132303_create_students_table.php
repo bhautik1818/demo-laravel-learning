@@ -21,7 +21,9 @@ class CreateStudentsTable extends Migration
             $table->string('username');
             $table->string('phone');
             $table->string('dob');
-            $table->string('subscription');
+            $table->string('subscription')->nullable()->default(NULL);
+            $table->string('otp', 6)->nullable()->default(NULL);
+            $table->boolean('is_verified')->default(0);
             $table->timestamps();
         });
     }

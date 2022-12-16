@@ -14,7 +14,9 @@ class Student extends Model
         'username',
         'phone',
         'dob',
-        'subscription'
+        'subscription',
+        'otp',
+        'is_verified'
     ];
     public function getUserNameAttribute($value)
     {
@@ -27,16 +29,18 @@ class Student extends Model
     }
 
 
-    public function getFullNameAttribute(){
-        return $this->attributes['firstname'].' '.$this->attributes['lastname'];
+    public function getFullNameAttribute()
+    {
+        return $this->attributes['firstname'] . ' ' . $this->attributes['lastname'];
     }
 
-    public function subscriptiondays($days){
+     public function subscriptiondays($days)
+    {
         $currentDate = Carbon::now()->toDateTimeString();
         $expireDateTime = Carbon::parse($currentDate)->addDays($days);
         return $expireDateTime;
     }
-    
+
     protected $appends = ['fullname'];
 
     //delete user after delete student.    
