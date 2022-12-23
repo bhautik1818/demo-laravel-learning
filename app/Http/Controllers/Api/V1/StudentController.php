@@ -38,7 +38,7 @@ class StudentController extends Controller
      */
     public function show(Student $student): StudentResource
     {
-        return new StudentResource($student);
+        return new StudentResource($student->all()->first());
     }
 
     /**
