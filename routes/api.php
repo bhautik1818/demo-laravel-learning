@@ -25,65 +25,43 @@ Route::group(['middleware' => 'api'], function ($routes) {
     Route::post('/register', 'UserController@register');
     Route::post('/login', 'UserController@login');
     Route::post('/profile', 'UserController@profile');
-    // Route::get('/v1/student', 'Api\V1\StudentController@show');
 });
 
 
-// $api = app('Dingo\Api\Routing\Router');
-// $api->version('v1', function ($api) {
-//     $api->get('/hello', function () {
-//         return "hello welcome";
-//     });
-//     // Route::apiResource('/student', 'Api\V1\StudentController')
-//     //     ->only(['index', 'show']);
-//     $api->get('student', [StudentController::class, 'show']);
-// });
-// $api->version('v2', function ($api) {
-//     $api->get('/hello', function () {
-//         return "hello welcome version 2";
-//     });
-
-//     // Route::apiResource('/student', 'Api\V2\StudentController')
-//     //     ->only(['index', 'show']);
-//     $api->get('/student', [V2StudentController::class, 'show']);
-// 
-
-
 $api = app('Dingo\Api\Routing\Router');
+$api->version('v1', function ($api) {
+    $api->get('/hello', function () {
+        return "hello welcome";
+    });
+    // Route::apiResource('/student', 'Api\V1\StudentController')
+    //     ->only(['index', 'show']);
+    $api->get('student', [StudentController::class, 'show']);
+});
+$api->version('v2', function ($api) {
+    $api->get('/hello', function () {
+        return "hello welcome version 2";
+    });
+    // Route::apiResource('/student', 'Api\V2\StudentController')
+    //     ->only(['index', 'show']);
+    $api->get('student', [V2StudentController::class, 'show']);
+});
+
 // $api->version(['v1', 'v2'], function ($api) {
 //     $api::prefix('v1', function ($api) {
 //         $api->get('student', [StudentController::class, 'show']);
-//         $api->get('student', [V2StudentController::class, 'show']);
+//         
 //     });
 // });
-
-// Route::prefix('v1')->group(function () {
-//     Route::get('/student', 'Api\V1\StudentController@show');
-// });
-// Route::prefix('v2')->group(function () {
-//     Route::get('/student', 'Api\V2\StudentController@show');
-// });
-
-
-
-// $api->version('v1', function ($api) {
-//     $api->group(['prefix' => 'v1'], function ($api) {
-//         $api->get('/student', 'Api\V2\StudentController@show');
-//     });
-
 
 $api->version('v1', function ($api) { // Always keep this to v1, and ignore accept header.
 
     $api->group(['prefix' => 'v1'], function ($api) { // Use this route group for v1
 
-        $api->get('/student',[StudentController::class, 'show']);
-
+        $api->get('/student', [StudentController::class, 'show']);
     });
 
     $api->group(['prefix' => 'v2'], function ($api) { // Use this route group for v1
 
         $api->get('/student', [V2StudentController::class, 'show']);
-
     });
-
 });
