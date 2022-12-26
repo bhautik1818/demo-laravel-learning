@@ -42,14 +42,14 @@ $api->version('v1', function ($api) {
 
 
 
-// $api->version('v2', function ($api) {
-//     $api->get('/hello', function () {
-//         return "hello welcome version 2";
-//     });
-//     // Route::apiResource('/student', 'Api\V2\StudentController')
-//     //     ->only(['index', 'show']);
-//     $api->get('student', [V2StudentController::class, 'show']);
-// });
+$api->version('v2', function ($api) {
+    $api->get('/hello', function () {
+        return "hello welcome version 2";
+    });
+    // Route::apiResource('/student', 'Api\V2\StudentController')
+    //     ->only(['index', 'show']);
+    $api->get('student', [V2StudentController::class, 'show']);
+});
 
 // $api->version(['v1', 'v2'], function ($api) {
 //     $api::prefix('v1', function ($api) {
